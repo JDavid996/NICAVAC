@@ -4,6 +4,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker, { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import firebase from '../../../database/firebase';
+import moment from 'moment';
+
+const formato = 'MMMM Do YYYY, h:mm:ss a';
 
 const NewAnimal_screen = (props) => {
 
@@ -11,7 +14,7 @@ const NewAnimal_screen = (props) => {
         animal_name: '',
         animal_generer: '',
         animal_race: '',
-        animal_age: Date,
+        animal_age: moment().format('MMMM Do YYYY, h:mm:ss a'),
         animal_own: firebase.authentication.currentUser.uid,
     };
 
