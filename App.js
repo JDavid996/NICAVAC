@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 // Navigation
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,8 +8,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 // Components
 
-import UsersList_screen from './components/screens/UsersList_screen';
-import NewUser_screen from './components/screens/NewUser_screen';
 import Login_screen from './components/auth/Login_screen';
 import Register_screen from './components/auth/Register_screen';
 import NewCattle_screen from './components/screens/NewCattle_screen';
@@ -18,6 +17,7 @@ import NewAnimal_screen from './components/screens/Animals_List/NewAnimal_screen
 import BullsList_screen from './components/screens/Animals_List/BullsList_screen';
 import CowsList_screen from './components/screens/Animals_List/CowsList_screen';
 import AnimalDetails_screen from './components/screens/Animals_List/AnimalDetails_screen';
+import { Avatar } from 'react-native-elements';
 
 const Stack = createStackNavigator();
 
@@ -41,7 +41,16 @@ function MyStack() {
       <Stack.Screen 
         name= 'CattlesList_screen' 
         component={CattlesList_screen} 
-        options= {{title: 'Tus Fincas', headerShown: true , headerLeft: null}}
+        options= {{title: 'Tus Fincas', headerShown: true , headerLeft: null, headerRight: ()=> 
+        <TouchableOpacity style={{marginRight: 20}}>
+          <View>
+            <Avatar
+              source={{
+                uri: 'https://cdn-icons-png.flaticon.com/128/660/660350.png'
+              }}
+            />
+          </View>
+        </TouchableOpacity>}}
       />
       <Stack.Screen 
         name= 'NewCattle_screen' 
@@ -72,16 +81,6 @@ function MyStack() {
         name='AnimalDetails_screen'
         component={AnimalDetails_screen}
         options={{title: 'Detalles', headerShown: true}}
-      />
-      <Stack.Screen 
-        name= 'UsersList_screen' 
-        component={UsersList_screen} 
-        options={{title: 'Usuarios'}}
-      />
-      <Stack.Screen 
-        name= 'NewUser_screen' 
-        component={NewUser_screen} 
-        options={{title: 'Nuevo Usuario'}}
       />
     </Stack.Navigator>
   )

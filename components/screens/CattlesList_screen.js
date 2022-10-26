@@ -42,7 +42,17 @@ const CattlesList_screen = ( props ) => {
                             <ListItem.Title style={{fontWeight: "bold"}}>{cattle.cattle_name}</ListItem.Title>
                             <ListItem.Subtitle>{firebase.authentication.currentUser.email}</ListItem.Subtitle>
                         </ListItem.Content>
+                        <TouchableOpacity >
+                            <View>
+                                <Avatar
+                                    source={{
+                                        uri:'https://cdn-icons-png.flaticon.com/128/3687/3687412.png'
+                                    }}                               
+                                />
+                            </View>
+                        </TouchableOpacity>
                     </ListItem>
+                    
                 )
                 })}
             
@@ -52,13 +62,14 @@ const CattlesList_screen = ( props ) => {
                 </View>
                 
             </TouchableOpacity>
+            
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
+        padding: 5,
         backgroundColor: '#ffffff'
     },
     btnL: {

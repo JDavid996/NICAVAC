@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text } from 'react-native';
-import { ListItem, Avatar } from 'react-native-elements';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { ListItem, Avatar, SearchBar } from 'react-native-elements';
+import { ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import firebase from '../../../database/firebase';
 
 const BullsList_screen = ( props ) => {
@@ -27,17 +27,21 @@ const BullsList_screen = ( props ) => {
         });
     },[]);
 
-    const AnimalDetails_screen=()=> {
-        props.navigation.navigate('AnimalDetails_screen');
+
+    const AnimalDetails_screen= () => {
+        props.navigation.push('AnimalDetails_screen');
         console.log()
     }
 
     return (
         
         <ScrollView style={styles.container}>
+            <TextInput
+                onChangeText={(text) => this.filterSearch(text)}
+            />
             {animals.map((animal) => {
                 return (
-                    <ListItem style={styles.list} key={animal.animal_id} onPress={() => AnimalDetails_screen()}>
+                    <ListItem style={styles.list} key={animal.animal_id} onPress={() => AnimalDetails_screen(animal.animal_id)}>
                         <Avatar
                             source={{
                                 uri: 'https://cdn-icons-png.flaticon.com/512/3819/3819549.png',

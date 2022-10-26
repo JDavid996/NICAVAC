@@ -12,21 +12,35 @@ const Category_screen = ( props ) => {
                 <View style={styles.containerOptions}>
 
                     <TouchableOpacity style={styles.btn} onPress={() => props.navigation.navigate('CowsList_screen')}>
+                        <Avatar size={100}
+                            source={{
+                                uri: 'https://cdn-icons-png.flaticon.com/512/1660/1660750.png',
+                            }}
+                        />
                         <Text style={{textAlign:'center', fontSize:25, color:'#242424'}}>Vacas</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.btn} onPress={() => props.navigation.navigate('BullsList_screen')}>
+                        <Avatar size={100}
+                            source={{
+                                uri: 'https://cdn-icons-png.flaticon.com/512/3819/3819549.png',
+                            }}
+                        />
                         <Text style={{textAlign:'center', fontSize:25, color:'#242424'}}>Toros</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.btn}>
+                        <Avatar size={100}
+                            source={{
+                                uri: 'https://cdn-icons-png.flaticon.com/128/2298/2298491.png',
+                            }}
+                        />
                         <Text style={{textAlign:'center', fontSize:25, color:'#242424'}}>Terneros</Text>
                     </TouchableOpacity>
-                    
-                    <TouchableOpacity style={styles.btnAdd} onPress={()=>props.navigation.navigate('NewAnimal_screen')}>
-                        <Text style={{textAlign:'center', fontSize:25, color:'#ffffff'}}>Agregar Animal</Text>
-                    </TouchableOpacity>
                 </View>
+                <TouchableOpacity style={styles.btnAdd} onPress={()=>props.navigation.navigate('NewAnimal_screen')}>
+                    <Text style={{textAlign:'center', fontSize:18, color:'#ffffff', fontWeight:'bold'}}>Agregar Animal</Text>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     )
@@ -40,17 +54,15 @@ const styles = StyleSheet.create ({
     containerOptions: {
         flex: 1,
         justifyContent:'center',
-        marginBottom: 0,
+        marginBottom: 10,
     },
     btn:{
-        backgroundColor:'#bfbfbf',
+        borderWidth: 2,
+        borderColor: '#242424',
         padding:10,
         borderRadius: 10,
         marginBottom: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#242424',
-        borderRightWidth: 1,
-        borderRightColor: '#242424'
+        alignItems: 'center'
     },
     btnAdd:{
         backgroundColor:'#346a4a',

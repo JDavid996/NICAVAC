@@ -11,7 +11,7 @@ const NewAnimal_screen = (props) => {
         animal_name: '',
         animal_generer: '',
         animal_race: '',
-        animal_age: '',
+        animal_age: Date,
         animal_own: firebase.authentication.currentUser.uid,
     };
 
@@ -32,13 +32,12 @@ const NewAnimal_screen = (props) => {
     const [date, setDate] = useState(new Date);
 
     const selectDate = (value, animal_age) => {
-        setDate ({...date, [animal_age]: value});
+        setDate ({...state, [animal_age]: value});
     }
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate;
         setDate(currentDate);
-        (value) => selectDate(value, 'animal_age')
     };
 
     const showMode = (currentMode) => {
@@ -63,6 +62,7 @@ const NewAnimal_screen = (props) => {
                     animal_race: state.animal_race,
                     animal_own: state.animal_own,
                     animal_generer: state.animal_generer,
+                    animal_age: state.animal_age
                 });
                 props.navigation.navigate ( 'Category_screen' );
             } catch ( error ){
@@ -77,6 +77,7 @@ const NewAnimal_screen = (props) => {
 
             <View style= { styles.inputGroup }>
                 <TextInput
+                    style={{fontSize: 18}}
                     placeholder='Nombre'
                     onChangeText={(value) => handleChangeText(value, 'animal_name')}
                     value={state.animal_name}
@@ -114,13 +115,18 @@ const NewAnimal_screen = (props) => {
             </View>
 
             <View>
-                <Button onPress={showDatePicker} title='Fecha de nacimiento'/>
-                <Text>Fecha seleccionada : {date.toLocaleDateString()}</Text>
+                <TouchableOpacity style={{marginTop: 10}} onPress={showDatePicker} title='Fecha de nacimiento'>
+                    <View style={{justifyContent:'center', backgroundColor: '#bfbfbf', borderRadius: 30, height: 45}}>
+                        <Text style={{fontSize: 18, alignSelf: 'center', fontWeight:'bold'}}>Fecha de nacimiento</Text>
+                    </View>
+                </TouchableOpacity>
+                <Text style={{fontSize: 18}} onChangeText={(value) => selectDate(value, 'animal_age')} 
+                value={state.animal_age}>Fecha seleccionada: {date.toLocaleDateString()}</Text>
             </View>
 
             <TouchableOpacity style={styles.btnL} onPress={() => newAnimal()}>
                 <View>
-                    <Text style={{textAlign:'center', fontSize:20, color:'#ffffff'}}>Agregar Animal</Text>
+                    <Text style={{textAlign:'center', fontSize:18, color:'#ffffff'}}>Agregar Animal</Text>
                 </View>
             </TouchableOpacity>
         </ScrollView>

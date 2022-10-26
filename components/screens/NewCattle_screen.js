@@ -44,6 +44,7 @@ const NewCattle_screen = (props) => {
 
             <View style= { styles.inputGroup }>
                 <TextInput
+                    style={{fontSize: 18}}
                     placeholder='Nombre'
                     onChangeText={(value) => handleChangeText(value, 'cattle_name')}
                     value={state.cattle_name}
@@ -52,7 +53,7 @@ const NewCattle_screen = (props) => {
             
             <TouchableOpacity style={styles.btnL} onPress={() => newCattle()}>
                 <View>
-                    <Text style={{textAlign:'center', fontSize:20, color:'#ffffff'}}>Agregar Finca</Text>
+                    <Text style={{textAlign:'center', fontSize:18, color:'#ffffff'}}>Agregar Finca</Text>
                 </View>
                 
             </TouchableOpacity>
