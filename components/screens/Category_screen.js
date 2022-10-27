@@ -48,7 +48,7 @@ const Category_screen = ( props ) => {
 
 const styles = StyleSheet.create ({
     container: {
-        padding: 30,
+        padding: 10,
         backgroundColor: '#ffffff'
     },
     containerOptions: {
@@ -61,7 +61,9 @@ const styles = StyleSheet.create ({
         borderColor: '#242424',
         padding:10,
         borderRadius: 10,
-        marginBottom: 20,
+        marginBottom: 10,
+        marginRight: 20,
+        marginLeft: 20,
         alignItems: 'center'
     },
     btnAdd:{

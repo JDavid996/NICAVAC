@@ -41,12 +41,14 @@ function MyStack() {
       <Stack.Screen 
         name= 'CattlesList_screen' 
         component={CattlesList_screen} 
-        options= {{title: 'Tus Fincas', headerShown: true , headerLeft: null, headerRight: ()=> 
+        options= {{title: 'Tus Fincas', headerShown: true , headerLeft: null, headerTintColor: 'white', headerStyle: {
+          backgroundColor: '#346a4a',
+        }, headerRight: ()=>
         <TouchableOpacity style={{marginRight: 20}}>
           <View>
             <Avatar
               source={{
-                uri: 'https://cdn-icons-png.flaticon.com/128/660/660350.png'
+                uri: 'https://cdn-icons-png.flaticon.com/128/1828/1828490.png'
               }}
             />
           </View>
@@ -60,22 +62,30 @@ function MyStack() {
       <Stack.Screen
         name= 'Category_screen'
         component={Category_screen}
-        options={{title:'Categorías', headerShown: true}}
+        options={{title:'Categorías', headerShown: true, headerTintColor: 'white', headerStyle: {
+          backgroundColor: '#346a4a',
+        },}}
       />
       <Stack.Screen
         name='NewAnimal_screen'
         component={NewAnimal_screen}
-        options={{title:'Nuevo animal', headerShown: true}}
+        options={{title:'Nuevo animal', headerShown: true, headerTintColor: 'white', headerStyle: {
+          backgroundColor: '#346a4a',
+        },}}
       />
       <Stack.Screen
         name='BullsList_screen'
         component={BullsList_screen}
-        options={{title:'Toros', headerShown: true}}
+        options={{title:'Toros', headerShown: true, headerTintColor: 'white', headerStyle: {
+          backgroundColor: '#346a4a',
+        },}}
       />
       <Stack.Screen
         name='CowsList_screen'
         component={CowsList_screen}
-        options={{title:'Vacas', headerShown: true}}
+        options={{title:'Vacas', headerShown: true, headerTintColor: 'white', headerStyle: {
+          backgroundColor: '#346a4a',
+        },}}
       />
       <Stack.Screen
         name='AnimalDetails_screen'
@@ -95,10 +105,4 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });

@@ -12,12 +12,13 @@ const BullsList_screen = ( props ) => {
         firebase.db.collection('animals').onSnapshot((querySnapshot) => {
             const animals =[];
             querySnapshot.docs.forEach((doc) => {
-                const { animal_name, animal_own, animal_generer } = doc.data();
+                const { animal_name, animal_own, animal_generer, animal_birth } = doc.data();
                 if (animal_generer=='M'){
                     animals.push({
                         animal_id: doc.id,
                         animal_name,
                         animal_generer,
+                        animal_birth,
                         animal_own, 
                     });
                 }
@@ -36,8 +37,7 @@ const BullsList_screen = ( props ) => {
     return (
         
         <ScrollView style={styles.container}>
-            <TextInput
-                onChangeText={(text) => this.filterSearch(text)}
+            <TextInput style={styles.txt}
             />
             {animals.map((animal) => {
                 return (
@@ -63,17 +63,11 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#ffffff'
     },
-    btnL: {
-        marginTop: 20,
-        backgroundColor:'#346a4a',
-        padding:10,
-        borderRadius: 10,
-        justifyContent: 'center',
-        width: '50%',
-        alignSelf: 'center',
-    },
     list: {
         borderRadius: 10,
+    },
+    txt:{
+        backgroundColor: '#bfbfbf'
     }
 })
 

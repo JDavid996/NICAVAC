@@ -69,7 +69,7 @@ const CattlesList_screen = ( props ) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 5,
+        padding: 10,
         backgroundColor: '#ffffff'
     },
     btnL: {
