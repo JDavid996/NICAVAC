@@ -158,7 +158,6 @@ const NewAnimal_screen = (props) => {
                     <Text style={{textAlign:'center', fontSize:18, color:'#ffffff'}}>Agregar Animal</Text>
                 </View>
             </TouchableOpacity>
-            
         </ScrollView>
     );
 };
