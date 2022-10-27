@@ -8,6 +8,7 @@ import firebase from '../../../database/firebase';
 const NewAnimal_screen = (props) => {
 
     const initialState = {
+        animal_code: '',
         animal_name: '',
         animal_generer: '',
         animal_race: '',
@@ -17,6 +18,10 @@ const NewAnimal_screen = (props) => {
     };
 
     const [ state, setState ] = useState (initialState);
+
+    const handleCodeText = (value, animal_code) => {
+        setState ({ ...state, [animal_code]: value});
+    };
 
     const handleChangeText = (value, animal_name) => {
         setState ({ ...state, [animal_name]: value});
@@ -63,6 +68,7 @@ const NewAnimal_screen = (props) => {
         } else {
             try {
                 await firebase.db.collection ( 'animals' ).add ({
+                    animal_code: state.animal_code,
                     animal_name: state.animal_name,
                     animal_race: state.animal_race,
                     animal_own: state.animal_own,
@@ -89,8 +95,8 @@ const NewAnimal_screen = (props) => {
                 <TextInput
                     style={{fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf'}}
                     placeholder=' Código'
-                    onChangeText={(value) => handleChangeText(value, 'animal_code')}
-                    value={state.animal_name}
+                    onChangeText={(value) => handleCodeText(value, 'animal_code')}
+                    value={state.animal_code}
                 />
             </View>
 
@@ -154,6 +160,13 @@ const NewAnimal_screen = (props) => {
                     <Text style={{textAlign:'center', fontSize:18, color:'#ffffff'}}>Agregar Animal</Text>
                 </View>
             </TouchableOpacity>
+
+            <View>
+                <TextInput
+                    onChanged={(value) => handleWeightText(value, 'animal_weight')}
+                    value={state.animal_weight}
+                />
+            </View>
         </ScrollView>
     );
 };

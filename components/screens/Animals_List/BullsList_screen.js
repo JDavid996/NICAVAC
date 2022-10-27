@@ -12,10 +12,11 @@ const BullsList_screen = ( props ) => {
         firebase.db.collection('animals').onSnapshot((querySnapshot) => {
             const animals =[];
             querySnapshot.docs.forEach((doc) => {
-                const { animal_name, animal_own, animal_generer, animal_birth } = doc.data();
+                const { animal_code, animal_name, animal_own, animal_generer, animal_birth } = doc.data();
                 if (animal_generer=='M'){
                     animals.push({
                         animal_id: doc.id,
+                        animal_code,
                         animal_name,
                         animal_generer,
                         animal_birth,
@@ -49,7 +50,7 @@ const BullsList_screen = ( props ) => {
                         />
                         <ListItem.Content>
                             <ListItem.Title style={{fontWeight: "bold"}}>{animal.animal_name}</ListItem.Title>
-                            <ListItem.Subtitle>ID: {animal.animal_id}</ListItem.Subtitle>
+                            <ListItem.Subtitle>ID: {animal.animal_code}</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
                 )
