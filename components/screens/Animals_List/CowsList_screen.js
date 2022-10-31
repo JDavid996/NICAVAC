@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import firebase from '../../../database/firebase';
 
 const CowsList_screen = (props) => {
@@ -25,7 +25,6 @@ const CowsList_screen = (props) => {
                         animal_cattle,
                     });
                 }
-
             });
             setAnimals(animals);
         });

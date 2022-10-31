@@ -17,32 +17,31 @@ const NewAnimal_screen = (props) => {
         animal_cattle: props.route.params.cattle_id,
     };
 
-    const [ state, setState ] = useState (initialState);
+    const [state, setState] = useState(initialState);
     const [date, setDate] = useState(new Date);
 
     const handleCodeText = (value, animal_code) => {
-        setState ({ ...state, [animal_code]: value});
+        setState({ ...state, [animal_code]: value });
     };
 
     const handleChangeText = (value, animal_name) => {
-        setState ({ ...state, [animal_name]: value});
+        setState({ ...state, [animal_name]: value });
     };
 
     const selectGenererText = (value, animal_generer) => {
-        setState ({...state, [animal_generer]: value});
+        setState({ ...state, [animal_generer]: value });
     }
 
     const selectRaceText = (value, animal_race) => {
-        setState ({...state, [animal_race]: value});
+        setState({ ...state, [animal_race]: value });
     }
 
     const selectWeightText = (value, animal_weight) => {
-        setState ({...state, [animal_weight]: value});
+        setState({ ...state, [animal_weight]: value });
     }
 
-
     const selectDate = (value, animal_birth) => {
-        setDate ({...state, [animal_birth]: value});
+        setDate({ ...state, [animal_birth]: value });
     }
 
     const onChange = (event, selectedDate) => {
@@ -63,11 +62,11 @@ const NewAnimal_screen = (props) => {
     };
 
     const newAnimal = async () => {
-        if ( (state.animal_name === '') || (state.animal_code === '') ){
-            alert ( 'Complete los campos' );
+        if ((state.animal_name === '') || (state.animal_code === '')) {
+            alert('Complete los campos');
         } else {
             try {
-                await firebase.db.collection ( 'animals' ).add ({
+                await firebase.db.collection('animals').add({
                     animal_code: state.animal_code,
                     animal_name: state.animal_name,
                     animal_race: state.animal_race,
@@ -76,61 +75,61 @@ const NewAnimal_screen = (props) => {
                     animal_birth: state.animal_birth,
                     animal_weight: parseInt(state.animal_weight),
                 });
-                props.navigation.navigate( 'CattlesList_screen' );
-            } catch ( error ){
-                console.log ( error )
+                props.navigation.navigate('CattlesList_screen');
+            } catch (error) {
+                console.log(error)
             }
         }
     };
 
 
     return (
-        <ScrollView style= { styles.container }>
-            <View style={{alignSelf: 'center', marginBottom: 10}}>
-                <Text style={{fontWeight: 'bold', fontSize: 20, color: '#346a4a', justifyContent: 'center'}}>COMPLETE TODOS LOS CAMPOS</Text>
+        <ScrollView style={styles.container}>
+            <View style={{ alignSelf: 'center', marginBottom: 10 }}>
+                <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#346a4a', justifyContent: 'center' }}>COMPLETE TODOS LOS CAMPOS</Text>
             </View>
 
-            <View style= { styles.inputGroup }>
-                <Text style={{fontSize: 18, marginLeft: 5}}>Código del animal</Text>
+            <View style={styles.inputGroup}>
+                <Text style={{ fontSize: 18, marginLeft: 5 }}>Código del animal</Text>
                 <TextInput
-                    style={{fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf'}}
+                    style={{ fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf' }}
                     placeholder=' Código'
                     onChangeText={(value) => handleCodeText(value, 'animal_code')}
                     value={state.animal_code}
                 />
             </View>
 
-            <View style= { styles.inputGroup }>
-            <Text style={{fontSize: 18, marginLeft: 5}}>Nombre del animal</Text>
+            <View style={styles.inputGroup}>
+                <Text style={{ fontSize: 18, marginLeft: 5 }}>Nombre del animal</Text>
                 <TextInput
-                    style={{fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf'}}
+                    style={{ fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf' }}
                     placeholder=' Nombre'
                     onChangeText={(value) => handleChangeText(value, 'animal_name')}
                     value={state.animal_name}
                 />
             </View>
 
-            <View style= { styles.inputGroup }>
-            <Text style={{fontSize: 18, marginLeft: 5}}>Sexo</Text>
+            <View style={styles.inputGroup}>
+                <Text style={{ fontSize: 18, marginLeft: 5 }}>Sexo</Text>
                 <Picker
-                    style={{backgroundColor:'#bfbfbf', borderRadius: 10}}
-                    selectedValue= {state.animal_generer}
+                    style={{ backgroundColor: '#bfbfbf', borderRadius: 10 }}
+                    selectedValue={state.animal_generer}
                     onValueChange={(value) => selectGenererText(value, 'animal_generer')}
                     value={state.animal_generer}
-                    >
+                >
                     <Picker.Item label="Hembra" value="H" />
                     <Picker.Item label="Macho" value="M" />
                 </Picker>
             </View>
 
-            <View style= { styles.inputGroup }>
-            <Text style={{fontSize: 18, marginLeft: 5}}>Raza</Text>
+            <View style={styles.inputGroup}>
+                <Text style={{ fontSize: 18, marginLeft: 5 }}>Raza</Text>
                 <Picker
-                    style={{backgroundColor:'#bfbfbf', borderRadius: 10}}
+                    style={{ backgroundColor: '#bfbfbf', borderRadius: 10 }}
                     selectedValue={state.animal_race}
                     onValueChange={(value) => selectRaceText(value, 'animal_race')}
                     value={state.animal_race}
-                    >
+                >
                     <Picker.Item label="Jersey" value="Jersey" />
                     <Picker.Item label="Holstein" value="Holstein" />
                     <Picker.Item label="Angus" value="Angus" />
@@ -145,22 +144,22 @@ const NewAnimal_screen = (props) => {
             </View>
 
             <View>
-            <Text style={{fontSize: 18, marginLeft: 5}}>Fecha de nacimiento</Text>
+                <Text style={{ fontSize: 18, marginLeft: 5 }}>Fecha de nacimiento</Text>
                 <TouchableOpacity onPress={showDatePicker} title='Fecha de nacimiento'>
-                    <View style={{justifyContent:'center', backgroundColor: '#bfbfbf', height: 45}}>
-                        <Text style={{fontSize: 16, marginLeft: 6}}>Seleccione una fecha</Text>
+                    <View style={{ justifyContent: 'center', backgroundColor: '#bfbfbf', height: 45 }}>
+                        <Text style={{ fontSize: 16, marginLeft: 6 }}>Seleccione una fecha</Text>
                     </View>
                 </TouchableOpacity>
-                <Text style={{fontSize: 18}} onChangeText={(value) => selectDate(value, 'animal_birth')} 
-                value={state.animal_birth=date}>Fecha seleccionada: {date.toLocaleDateString()}</Text>
+                <Text style={{ fontSize: 18 }} onChangeText={(value) => selectDate(value, 'animal_birth')}
+                    value={state.animal_birth = date}>Fecha seleccionada: {date.toLocaleDateString()}</Text>
             </View>
 
             <View>
-            <Text style={{fontSize: 18, marginLeft: 5}}>Peso en libras</Text>
-                <TextInput 
-                    style={{fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf'}}
+                <Text style={{ fontSize: 18, marginLeft: 5 }}>Peso en libras</Text>
+                <TextInput
+                    style={{ fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf' }}
                     placeholder=' Peso el libras'
-                    keyboardType= 'numeric'
+                    keyboardType='numeric'
                     onChangeText={(value) => selectWeightText(value, 'animal_weight')}
                     value={state.animal_weight}
                 />
@@ -168,16 +167,14 @@ const NewAnimal_screen = (props) => {
 
             <TouchableOpacity style={styles.btnL} onPress={() => newAnimal()}>
                 <View>
-                    <Text style={{textAlign:'center', fontSize:18, color:'#ffffff'}}>Agregar Animal</Text>
+                    <Text style={{ textAlign: 'center', fontSize: 18, color: '#ffffff' }}>Agregar Animal</Text>
                 </View>
             </TouchableOpacity>
-
-            
         </ScrollView>
     );
 };
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
@@ -188,8 +185,8 @@ const styles = StyleSheet.create ({
     },
     btnL: {
         marginTop: 20,
-        backgroundColor:'#346a4a',
-        padding:10,
+        backgroundColor: '#346a4a',
+        padding: 10,
         borderRadius: 10,
         justifyContent: 'center',
         width: '50%',

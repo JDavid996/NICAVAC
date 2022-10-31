@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text } from 'react-native';
-import { ListItem, Avatar, SearchBar } from 'react-native-elements';
+import { StyleSheet } from 'react-native';
+import { ListItem, Avatar } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 import firebase from '../../../database/firebase';
 
@@ -25,7 +25,6 @@ const BullsList_screen = (props) => {
                         animal_cattle,
                     });
                 }
-
             });
             setAnimals(animals);
         });

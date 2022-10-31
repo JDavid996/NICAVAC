@@ -3,7 +3,6 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { Text, View, Image, StyleSheet, ActivityIndicator } from "react-native";
 import firebase from "../../../database/firebase";
 import moment, { parseTwoDigitYear } from "moment/moment";
-moment.locale('es')
 
 const AnimalDetails_screen = (props) => {
 
@@ -53,7 +52,6 @@ const AnimalDetails_screen = (props) => {
     }
 
     return (
-
         <ScrollView>
             <View style={styles.containerLogo}>
                 <Image
@@ -80,7 +78,6 @@ const AnimalDetails_screen = (props) => {
                 </View>
             </TouchableOpacity>
         </ScrollView>
-
     )
 }
 
