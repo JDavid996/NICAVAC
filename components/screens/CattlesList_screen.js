@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
+import { Alert } from 'react-native';
 import { Button, StyleSheet, Text } from 'react-native';
 import { ListItem, Avatar } from 'react-native-elements';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
@@ -27,24 +28,38 @@ const CattlesList_screen = ( props ) => {
         });
     },[]);
 
+    const deleteAnimal = async (cattle) => {
+        console.log(cattle.cattle_id)
+        const dbRef = firebase.db.collection('cattles').doc(cattle.cattle_id)
+        await dbRef.delete()
+    }
+
     return (
         
         <ScrollView style={styles.container}>
             {cattles.map((cattle) => {
                 return (
-                    <ListItem style={styles.list} key={cattle.cattle_id} onPress={()=> props.navigation.navigate('Category_screen')}>
+                    <ListItem style={styles.list} key={cattle.cattle_id}>
                         <Avatar
+                            onPress={()=> props.navigation.navigate('Category_screen', {
+                                cattle_id: cattle.cattle_id})}
                             source={{
                                 uri: 'https://cdn-icons-png.flaticon.com/512/1813/1813617.png',
                             }}
                         />
                         <ListItem.Content>
-                            <ListItem.Title style={{fontWeight: "bold"}}>{cattle.cattle_name}</ListItem.Title>
-                            <ListItem.Subtitle>{firebase.authentication.currentUser.email}</ListItem.Subtitle>
+                            <ListItem.Title 
+                                onPress={()=> props.navigation.navigate('Category_screen', {
+                                    cattle_id: cattle.cattle_id})}
+                                style={{fontWeight: "bold"}}>{cattle.cattle_name}</ListItem.Title>
+                            <ListItem.Subtitle
+                            onPress={()=> props.navigation.navigate('Category_screen', {
+                                cattle_id: cattle.cattle_id})}>{firebase.authentication.currentUser.email}</ListItem.Subtitle>
                         </ListItem.Content>
-                        <TouchableOpacity >
+                        <TouchableOpacity>
                             <View>
                                 <Avatar
+                                    onPress={() => deleteAnimal(cattle)}
                                     source={{
                                         uri:'https://cdn-icons-png.flaticon.com/128/3687/3687412.png'
                                     }}                               
@@ -54,7 +69,7 @@ const CattlesList_screen = ( props ) => {
                     </ListItem>
                     
                 )
-                })}
+            })}
             
             <TouchableOpacity style={styles.btnL} onPress={() => props.navigation.navigate('NewCattle_screen')}>
                 <View>

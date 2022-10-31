@@ -14,10 +14,11 @@ const NewAnimal_screen = (props) => {
         animal_race: '',
         animal_birth: '',
         animal_weight: '',
-        animal_own: firebase.authentication.currentUser.uid,
+        animal_cattle: props.route.params.cattle_id,
     };
 
     const [ state, setState ] = useState (initialState);
+    const [date, setDate] = useState(new Date);
 
     const handleCodeText = (value, animal_code) => {
         setState ({ ...state, [animal_code]: value});
@@ -39,7 +40,6 @@ const NewAnimal_screen = (props) => {
         setState ({...state, [animal_weight]: value});
     }
 
-    const [date, setDate] = useState(new Date);
 
     const selectDate = (value, animal_birth) => {
         setDate ({...state, [animal_birth]: value});
@@ -63,7 +63,7 @@ const NewAnimal_screen = (props) => {
     };
 
     const newAnimal = async () => {
-        if ( (state.animal_name === '') ){
+        if ( (state.animal_name === '') || (state.animal_code === '') ){
             alert ( 'Complete los campos' );
         } else {
             try {
@@ -71,12 +71,12 @@ const NewAnimal_screen = (props) => {
                     animal_code: state.animal_code,
                     animal_name: state.animal_name,
                     animal_race: state.animal_race,
-                    animal_own: state.animal_own,
+                    animal_cattle: state.animal_cattle,
                     animal_generer: state.animal_generer,
                     animal_birth: state.animal_birth,
-                    animal_weight: state.animal_weight,
+                    animal_weight: parseInt(state.animal_weight),
                 });
-                props.navigation.navigate ( 'Category_screen' );
+                props.navigation.navigate( 'CattlesList_screen' );
             } catch ( error ){
                 console.log ( error )
             }
@@ -155,18 +155,24 @@ const NewAnimal_screen = (props) => {
                 value={state.animal_birth=date}>Fecha seleccionada: {date.toLocaleDateString()}</Text>
             </View>
 
+            <View>
+            <Text style={{fontSize: 18, marginLeft: 5}}>Peso en libras</Text>
+                <TextInput 
+                    style={{fontSize: 16, borderBottomWidth: 1, borderLeftWidth: 1, borderBottomColor: '#bfbfbf', borderLeftColor: '#bfbfbf'}}
+                    placeholder=' Peso el libras'
+                    keyboardType= 'numeric'
+                    onChangeText={(value) => selectWeightText(value, 'animal_weight')}
+                    value={state.animal_weight}
+                />
+            </View>
+
             <TouchableOpacity style={styles.btnL} onPress={() => newAnimal()}>
                 <View>
                     <Text style={{textAlign:'center', fontSize:18, color:'#ffffff'}}>Agregar Animal</Text>
                 </View>
             </TouchableOpacity>
 
-            <View>
-                <TextInput
-                    onChanged={(value) => handleWeightText(value, 'animal_weight')}
-                    value={state.animal_weight}
-                />
-            </View>
+            
         </ScrollView>
     );
 };

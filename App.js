@@ -90,7 +90,9 @@ function MyStack() {
       <Stack.Screen
         name='AnimalDetails_screen'
         component={AnimalDetails_screen}
-        options={{title: 'Detalles', headerShown: true}}
+        options={{title: 'Detalles', headerShown: true, headerTintColor: 'white', headerStyle: {
+          backgroundColor: '#346a4a',
+        },}}
       />
     </Stack.Navigator>
   )

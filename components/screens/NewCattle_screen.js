@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { 
-    View, 
-    Button, 
+    View,
     TextInput, 
     StyleSheet,
     Text
@@ -12,7 +11,6 @@ import firebase from '../../database/firebase';
 
 const NewCattle_screen = (props) => {
 
-    const [email, setEmail] = useState('')
     const initialState = {
         cattle_name: '',
         cattle_own: firebase.authentication.currentUser.uid,
